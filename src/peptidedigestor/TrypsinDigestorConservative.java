@@ -8,7 +8,6 @@ package peptidedigestor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 /**
  *
@@ -35,8 +34,8 @@ public class TrypsinDigestorConservative implements Digestor {
         // Trypsin
         // The order for the sites is:
         // p4   p3  p2  p1  p1F p2F p3F p4F
-        List<Character> aa = new ArrayList<>(Arrays.asList('R', 'K'));
-        List<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
+        ArrayList<Character> aa = new ArrayList<>(Arrays.asList('R', 'K'));
+        ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
         for (Character amino : aa) {
             for (int index = peptide.indexOf(amino); index >= 0 && index <= peptide.length() - 2;
                     index = peptide.indexOf(amino, index + 1)) {
@@ -48,6 +47,11 @@ public class TrypsinDigestorConservative implements Digestor {
                 }
             }
         }
+       return getDigestionArray(peptide, indices);
+    }
+
+    @Override
+    public ArrayList<String> getDigestionArray(final String peptide, final ArrayList<Integer> indices) {
         Collections.sort(indices);
         ArrayList<String> digestedPeptide = new ArrayList<>();
         for (int i = 0; i < indices.size() - 1; i++) {
@@ -58,3 +62,4 @@ public class TrypsinDigestorConservative implements Digestor {
         return digestedPeptide;
     }
 }
+
