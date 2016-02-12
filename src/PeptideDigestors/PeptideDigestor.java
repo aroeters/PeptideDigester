@@ -1,4 +1,4 @@
-package peptidedigestor;
+package PeptideDigestors;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class PeptideDigestor {
         String peptideTRY3 = "GDVPSVGLEGPDVDLQGPEAK";
         String peptideTRY4 = "VEGTLKGPEVDLKGPR";
         String peptideTRY5 = "ADLDVSGPKVDIDVPDVNIEGPEGK";
-        Integer i = 9000;
+        Integer i = 1;
         Integer count = 0;
         ArrayList<String> tryout = new ArrayList<>();
         while (count < i) {

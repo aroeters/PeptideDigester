@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigestor;
+package PeptideDigestors;
 
 import java.util.ArrayList;
 
@@ -18,10 +18,4 @@ public interface Digestor {
      * @return A list with the new peptide(s)
      */
     abstract ArrayList<String> digest(final String peptide);
-    /**
-     * 
-     * @return ArrayList of the digested peptide.
-     */
-    abstract ArrayList<String> getDigestionArray(final String pepString, 
-            final ArrayList<Integer> indices);
 }

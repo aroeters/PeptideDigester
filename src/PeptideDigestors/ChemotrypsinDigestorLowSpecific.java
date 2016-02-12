@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigestor;
+package PeptideDigestors;
 
+import PeptideCutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  *
@@ -50,17 +50,7 @@ public class ChemotrypsinDigestorLowSpecific implements Digestor {
                 }
             }
         }
-               return getDigestionArray(peptide, indices);
-    }
-    @Override
-    public ArrayList<String> getDigestionArray(final String peptide, final ArrayList<Integer> indices) {
-        Collections.sort(indices);
-        ArrayList<String> digestedPeptide = new ArrayList<>();
-        for (int i = 0; i < indices.size() - 1; i++) {
-            if (indices.get(i + 1) - indices.get(i) >= this.minimalLength) {
-                digestedPeptide.add(peptide.substring(indices.get(i) + 1, indices.get(i + 1) + 1));
-            }
-        }
-        return digestedPeptide;
+        PeptideCutter PC = new PeptideCutter();
+        return PC.getDigestionArray(peptide, indices, this.minimalLength);
     }
 }

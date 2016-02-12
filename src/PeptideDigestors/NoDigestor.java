@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigestor;
+package PeptideDigestors;
 
+import PeptideCutter.PeptideCutter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -34,21 +36,8 @@ public class NoDigestor implements Digestor {
         // The order for the sites is:
         // p4   p3  p2  p1  p1F p2F p3F p4F
         ArrayList<String> digestedPeptide = new ArrayList<>();
-        if (peptide.length() >= minimalLength) {
-            digestedPeptide.add(peptide);
-        }
-        return digestedPeptide;
-    }
-
-    @Override
-    public ArrayList<String> getDigestionArray(final String peptide, final ArrayList<Integer> indices) {
-        Collections.sort(indices);
-        ArrayList<String> digestedPeptide = new ArrayList<>();
-        for (int i = 0; i < indices.size() - 1; i++) {
-            if (indices.get(i + 1) - indices.get(i) >= this.minimalLength) {
-                digestedPeptide.add(peptide.substring(indices.get(i) + 1, indices.get(i + 1) + 1));
-            }
-        }
-        return digestedPeptide;
+        ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
+        PeptideCutter PC = new PeptideCutter();
+        return PC.getDigestionArray(peptide, indices, this.minimalLength);
     }
 }

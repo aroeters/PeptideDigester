@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigestor;
+package PeptideDigestors;
 
+import PeptideCutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,6 +35,7 @@ public class TrypsinDigestor implements Digestor {
         // Trypsin
         // The order for the sites is:
         // p4   p3  p2  p1  p1F p2F p3F p4F
+        
         ArrayList<Character> aa = new ArrayList<>(Arrays.asList('K', 'R'));
         ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
         for (Character amino : aa) {
@@ -48,8 +50,8 @@ public class TrypsinDigestor implements Digestor {
                     } else if (amino.equals('R') && p2.equals("M") && p1F.equals("P")) {
                         indices.add(index);
                     } else {
-                        if (amino.equals('K') && p2.equals("C") && p1F.equals("D") || p1F.equals("H") ||
-                                p1F.equals("Y")) {
+                        if (amino.equals('K') && p2.equals("C") && p1F.equals("D") || p1F.equals("H")
+                                || p1F.equals("Y")) {
                         } else if (amino.equals('K') && p2.equals("D") && p1F.equals("D")) {
                         } else if (amino.equals('R') && p2.equals("C") && p1F.equals("K")) {
                         } else if (amino.equals('R') && p2.equals("R") && p1F.equals("R") || p1F.equals("H")) {
@@ -65,19 +67,8 @@ public class TrypsinDigestor implements Digestor {
 
             }
         }
-       return getDigestionArray(peptide, indices);
+        PeptideCutter PC = new PeptideCutter();
+        return PC.getDigestionArray(peptide, indices, this.minimalLength);
     }
 
-    @Override
-    public ArrayList<String> getDigestionArray(final String peptide, final ArrayList<Integer> indices) {
-        Collections.sort(indices);
-        ArrayList<String> digestedPeptide = new ArrayList<>();
-        for (int i = 0; i < indices.size() - 1; i++) {
-            if (indices.get(i + 1) - indices.get(i) >= this.minimalLength) {
-                digestedPeptide.add(peptide.substring(indices.get(i) + 1, indices.get(i + 1) + 1));
-            }
-        }
-        return digestedPeptide;
-    }
 }
-
