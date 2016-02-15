@@ -6,10 +6,10 @@
 package PeptideDigestors;
 
 import PeptideCutter.PeptideCutter;
+import peptidematcher.PeptideMatcher;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 /**
  *
  * @author arne
@@ -21,14 +21,16 @@ public class ChemotrypsinDigestorHighSpecific implements Digestor {
      */
     private final Integer minimalLength;
     /**
-     * The Patterns for the regex.
+     * The first Patterns for the regex.
      */
-    Pattern pattern1 = Pattern.compile("[FY](?!P)");
-    
+    private final Pattern pattern1 = Pattern.compile("[FY](?!P)");
+    /**
+     * The second pattern for the regex.
+     */
+    private final Pattern pattern2 = Pattern.compile("[W](?![MP])");
     /**
      * Initiates the class.
-     *
-     * @param minLength
+     * @param minLength minimal length a peptide should have
      */
     public ChemotrypsinDigestorHighSpecific(final Integer minLength) {
         this.minimalLength = minLength;
@@ -40,8 +42,10 @@ public class ChemotrypsinDigestorHighSpecific implements Digestor {
         // The order for the sites is:
         // p4   p3  p2  p1  p1F p2F p3F p4F
         ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
-        
-        PeptideCutter PC = new PeptideCutter();
-        return PC.getDigestionArray(peptide, indices, this.minimalLength);
+        PeptideMatcher pm = new PeptideMatcher();
+        indices.addAll(pm.getIndexList(pattern1, peptide));
+        indices.addAll(pm.getIndexList(pattern2, peptide));
+        PeptideCutter pc = new PeptideCutter();
+        return pc.getDigestionArray(peptide, indices, this.minimalLength);
     }
 }
