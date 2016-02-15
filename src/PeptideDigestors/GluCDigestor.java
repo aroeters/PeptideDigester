@@ -10,5 +10,7 @@ package PeptideDigestors;
  * @author Rutger
  */
 public class GluCDigestor {
-    
+    public GluCDigestor () {
+        
+    }
 }
