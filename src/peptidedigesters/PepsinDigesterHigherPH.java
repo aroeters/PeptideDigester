@@ -7,7 +7,6 @@ package peptidedigesters;
 
 import peptidecutter.PeptideCutter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 import peptidematcher.PeptideMatcher;
 
@@ -22,15 +21,17 @@ public class PepsinDigesterHigherPH implements Digester {
      */
     private final Integer minimalLength;
     /**
-     * The first pattern of the Pepsin High PH digestor.
-     * pattern created by Rutger Ozinga
+     * The first pattern of the Pepsin High PH digestor. pattern created by
+     * Rutger Ozinga
      */
     private final Pattern pattern1 = Pattern.compile("(?![HKR]P)[^R](?=[FLWY][^P])");
     /**
-     * The second pattern of the Pepsin High PH digestor.
-     * pattern created by Rutger Ozinga
+     * The second pattern of the Pepsin High PH digestor. pattern created by
+     * Rutger Ozinga
      */
     private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[^FLWY](?=[A-Z][^P])");
+
+    private ArrayList<Integer> indices;
 
     /**
      * Initiates the class.
@@ -44,13 +45,18 @@ public class PepsinDigesterHigherPH implements Digester {
     @Override
     public final ArrayList<String> digest(final String peptide) {
         // Pepsin Higher PH (PH > 2)
-        // The order for the sites is:
-        // p4   p3  p2  p1  p1F p2F p3F p4F
-        ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
+        indices = new ArrayList<>();
+        this.indices.add(-1);
+        this.indices.add(peptide.length() - 1);
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         indices.addAll(pm.getIndexList(pattern2, peptide));
         PeptideCutter pc = new PeptideCutter();
         return pc.getDigestionArray(peptide, indices, this.minimalLength);
+    }
+
+    @Override
+    public ArrayList<Integer> getIndices() {
+        return this.indices;
     }
 }

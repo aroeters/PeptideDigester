@@ -19,6 +19,10 @@ public class TrypsinDigester implements Digester {
      * contains the minimal length a peptide should have.
      */
     private final Integer minimalLength;
+    /**
+     * The ArrayList of indices to cut the protein/peptide
+     */
+    private ArrayList<Integer> indices;
 
     /**
      * Initiates the class.
@@ -34,8 +38,10 @@ public class TrypsinDigester implements Digester {
         // Trypsin
         // The order for the sites is:
         // p4   p3  p2  p1  p1F p2F p3F p4F
+        indices = new ArrayList<>();
+        this.indices.add(0);
+        this.indices.add(peptide.length() - 1);
         ArrayList<Character> aa = new ArrayList<>(Arrays.asList('K', 'R'));
-        ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
         for (Character amino : aa) {
             for (int index = peptide.indexOf(amino); index >= 0 && index <= peptide.length() - 2;
                     index = peptide.indexOf(amino, index + 1)) {
@@ -67,6 +73,11 @@ public class TrypsinDigester implements Digester {
         }
         PeptideCutter pc = new PeptideCutter();
         return pc.getDigestionArray(peptide, indices, this.minimalLength);
+    }
+
+    @Override
+    public ArrayList<Integer> getIndices() {
+        return this.indices;
     }
 
 }

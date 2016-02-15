@@ -7,7 +7,6 @@ package peptidedigesters;
 
 import peptidecutter.PeptideCutter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -19,7 +18,10 @@ public class NoDigester implements Digester {
      * contains the minimal length a peptide should have.
      */
     private final Integer minimalLength;
-
+    /**
+     * The ArrayList of indices to cut the protein/peptide
+     */
+    private ArrayList<Integer> indices;
     /**
      * Initiates the class.
      *
@@ -28,15 +30,19 @@ public class NoDigester implements Digester {
     public NoDigester(final Integer minLength) {
         this.minimalLength = minLength;
     }
-
+    
     @Override
     public final ArrayList<String> digest(final String peptide) {
         // No Digestion
-        // The order for the sites is:
-        // p4   p3  p2  p1  p1F p2F p3F p4F
-        ArrayList<String> digestedPeptide = new ArrayList<>();
-        ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
+        indices = new ArrayList<>();
+        this.indices.add(0);
+        this.indices.add(peptide.length() - 1);
         PeptideCutter PC = new PeptideCutter();
         return PC.getDigestionArray(peptide, indices, this.minimalLength);
+    }
+
+    @Override
+    public ArrayList<Integer> getIndices() {
+        return this.indices;
     }
 }

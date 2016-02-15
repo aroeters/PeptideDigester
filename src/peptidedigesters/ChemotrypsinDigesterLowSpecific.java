@@ -7,7 +7,6 @@ package peptidedigesters;
 
 import peptidecutter.PeptideCutter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 import peptidematcher.PeptideMatcher;
 
@@ -29,16 +28,22 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
     private final Pattern pattern2 = Pattern.compile("[W](?![MP])");
     private final Pattern pattern3 = Pattern.compile("[M](?![PY])");
     private final Pattern pattern4 = Pattern.compile("[H](?![DMPW])");
-    
+
+    /**
+     * The ArrayList of indices to cut the protein/peptide
+     */
+    private ArrayList<Integer> indices;
+
     public ChemotrypsinDigesterLowSpecific(final Integer minLength) {
         this.minimalLength = minLength;
     }
+
     @Override
     public final ArrayList<String> digest(final String peptide) {
         // Chemotrysin high specificity
-        // The order for the sites is:
-        // p4   p3  p2  p1  p1F p2F p3F p4F
-        ArrayList<Integer> indices = new ArrayList<>(Arrays.asList(-1, peptide.length() - 1));
+        indices = new ArrayList<>();
+        this.indices.add(0);
+        this.indices.add(peptide.length() - 1);
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         indices.addAll(pm.getIndexList(pattern2, peptide));
@@ -47,5 +52,9 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
         PeptideCutter pc = new PeptideCutter();
         return pc.getDigestionArray(peptide, indices, this.minimalLength);
     }
-    
+
+    @Override
+    public ArrayList<Integer> getIndices() {
+        return this.indices;
+    }
 }

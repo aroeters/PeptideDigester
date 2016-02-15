@@ -27,7 +27,7 @@ public class PeptideCutter {
         ArrayList<String> digestedPeptide = new ArrayList<>();
         for (int i = 0; i < indices.size() - 1; i++) {
             if (indices.get(i + 1) - indices.get(i) >= minimalLength) {
-                digestedPeptide.add(peptide.substring(indices.get(i) + 1, indices.get(i + 1) + 1));
+                digestedPeptide.add(peptide.substring(indices.get(i), indices.get(i + 1)));
             }
         }
         return digestedPeptide;

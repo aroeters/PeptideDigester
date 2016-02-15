@@ -18,4 +18,10 @@ public interface Digester {
      * @return A list with the new peptide(s)
      */
     abstract ArrayList<String> digest(final String peptide);
+    
+    /**
+     * Returns the indices of the splitting sites found without length filtering.
+     * @return ArrayList<Integer> indices
+     */
+    abstract ArrayList<Integer> getIndices();
 }
