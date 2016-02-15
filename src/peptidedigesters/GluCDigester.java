@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PeptideDigestors;
+package peptidedigesters;
 
-import PeptideCutter.PeptideCutter;
+import peptidecutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -15,7 +15,7 @@ import peptidematcher.PeptideMatcher;
  *
  * @author Rutger
  */
-public class GluCDigestor implements Digestor {
+public class GluCDigester implements Digester {
 
     /**
      * contains the minimal length a peptide should have
@@ -28,7 +28,7 @@ public class GluCDigestor implements Digestor {
     private final Pattern pattern1 = Pattern.compile("[E]");
     
     
-    public GluCDigestor(final Integer minLength) {
+    public GluCDigester(final Integer minLength) {
         this.minimalLength = minLength;
     }
     @Override

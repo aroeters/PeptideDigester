@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PeptideDigestors;
+package peptidedigesters;
 
-import PeptideCutter.PeptideCutter;
+import peptidecutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -15,7 +15,7 @@ import peptidematcher.PeptideMatcher;
  *
  * @author Rutger
  */
-public class AspNDigestor implements Digestor {
+public class AspNDigester implements Digester {
 
     /**
      * contains the minimal length a peptide should have
@@ -28,7 +28,7 @@ public class AspNDigestor implements Digestor {
     private final Pattern pattern1 = Pattern.compile("[A-Z](?=D)");
     
     
-    public AspNDigestor(final Integer minLength) {
+    public AspNDigester(final Integer minLength) {
         this.minimalLength = minLength;
     }
     @Override

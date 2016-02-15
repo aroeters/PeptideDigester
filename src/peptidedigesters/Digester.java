@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PeptideDigestors;
+package peptidedigesters;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author arne
  */
-public interface Digestor {
+public interface Digester {
     /**
      * Digests the peptide.
      * @param peptide String of the peptide

@@ -1,4 +1,4 @@
-package PeptideDigestors;
+package peptidedigesters;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author arne
  */
-public class PeptideDigestor {
+public class PeptideDigester {
 
     /**
      * @param args the command line arguments
@@ -29,42 +29,42 @@ public class PeptideDigestor {
              tryout.add(peptideTRY5);
         }
         System.out.println("Starting to process 50 million peptides to show the performance.");
-        ChemotrypsinDigestorLowSpecific o1 = new ChemotrypsinDigestorLowSpecific(6);
+        ChemotrypsinDigesterLowSpecific o1 = new ChemotrypsinDigesterLowSpecific(6);
         long start1 = System.currentTimeMillis();
         for (String peptide : tryout) {
             o1.digest(peptide);
         }
         System.out.println("Chemotrypsin low spec\t" +(System.currentTimeMillis() - start1) + " m/s");
         
-        ChemotrypsinDigestorHighSpecific o2 = new ChemotrypsinDigestorHighSpecific(6);
+        ChemotrypsinDigesterHighSpecific o2 = new ChemotrypsinDigesterHighSpecific(6);
         long start2 = System.currentTimeMillis();
         for (String peptide : tryout) {
             o2.digest(peptide);
         }
         System.out.println("Chemotrypsin high spec\t" +(System.currentTimeMillis() - start2) + " m/s");
         
-        TrypsinDigestor o3 = new TrypsinDigestor(6);
+        TrypsinDigester o3 = new TrypsinDigester(6);
         long start3 = System.currentTimeMillis();
         for (String peptide : tryout) {
             o3.digest(peptide);
         }
         System.out.println("Trypsin\t\t\t" +(System.currentTimeMillis() - start3) + " m/s");
         
-        TrypsinDigestorConservative o4 = new TrypsinDigestorConservative(6);
+        TrypsinDigesterConservative o4 = new TrypsinDigesterConservative(6);
         long start4 = System.currentTimeMillis();
         for (String peptide : tryout) {
             o4.digest(peptide);
         }
         System.out.println("Trypsin Conservative\t" +(System.currentTimeMillis() - start4) + " m/s");
         
-        PepsinDigestorHigherPH o5 = new PepsinDigestorHigherPH(6);
+        PepsinDigesterHigherPH o5 = new PepsinDigesterHigherPH(6);
         long start5 = System.currentTimeMillis();
         for (String peptide : tryout) {
             o5.digest(peptide);
         }
         System.out.println("PepsinDigestorHigherPH\t" +(System.currentTimeMillis() - start5) + " m/s");
         
-        PepsinDigestorLowPH o6 = new PepsinDigestorLowPH(6);
+        PepsinDigesterLowPH o6 = new PepsinDigesterLowPH(6);
         long start6 = System.currentTimeMillis();
         for (String peptide : tryout) {
             o6.digest(peptide);
