@@ -50,7 +50,7 @@ public class ChemotrypsinDigestorLowSpecific implements Digestor {
                 }
             }
         }
-        PeptideCutter PC = new PeptideCutter();
-        return PC.getDigestionArray(peptide, indices, this.minimalLength);
+        PeptideCutter pc = new PeptideCutter();
+        return pc.getDigestionArray(peptide, indices, this.minimalLength);
     }
 }
