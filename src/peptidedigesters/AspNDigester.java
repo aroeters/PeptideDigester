@@ -38,7 +38,7 @@ public class AspNDigester implements Digester {
         // AspN 
         indices = new ArrayList<>();
         this.indices.add(0);
-        this.indices.add(peptide.length() - 1);
+        this.indices.add(peptide.length());
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         PeptideCutter pc = new PeptideCutter();

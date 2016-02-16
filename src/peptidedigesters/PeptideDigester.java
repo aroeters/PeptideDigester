@@ -17,7 +17,7 @@ public class PeptideDigester {
         String peptideTRY3 = "GDVPSVGLEGPDVDLQGPEAK";
         String peptideTRY4 = "VEGTLKGPEVDLKGPR";
         String peptideTRY5 = "ADLDVSGPKVDIDVPDVNIEGPEGK";
-        Integer i = 1000000;
+        Integer i = 1;
         Integer count = 0;
         ArrayList<String> tryout = new ArrayList<>();
         while (count < i) {
@@ -29,10 +29,10 @@ public class PeptideDigester {
              tryout.add(peptideTRY5);
         }
         System.out.println("Starting to process " + i*5 + " peptides to show the performance.");
-        ChemotrypsinDigesterLowSpecific o1 = new ChemotrypsinDigesterLowSpecific(6);
+        ChemotrypsinDigesterLowSpecific o1 = new ChemotrypsinDigesterLowSpecific(0);
         long start1 = System.currentTimeMillis();
         for (String peptide : tryout) {
-            o1.digest(peptide);
+            System.out.println(o1.digest(peptide));
         }
         System.out.println("Chemotrypsin low spec\t" +(System.currentTimeMillis() - start1)/1000 + " s");
         ChemotrypsinDigesterHighSpecific o2 = new ChemotrypsinDigesterHighSpecific(6);

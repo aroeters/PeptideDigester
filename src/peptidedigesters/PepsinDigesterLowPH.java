@@ -49,7 +49,7 @@ public class PepsinDigesterLowPH implements Digester {
         // Pepsin low PH (PH1.3)
         indices = new ArrayList<>();
         this.indices.add(0);
-        this.indices.add(peptide.length() - 1);
+        this.indices.add(peptide.length());
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         indices.addAll(pm.getIndexList(pattern2, peptide));

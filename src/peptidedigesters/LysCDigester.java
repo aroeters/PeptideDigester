@@ -40,7 +40,7 @@ public class LysCDigester implements Digester {
         // The order for the sites is:
         // p4   p3  p2  p1  p1F p2F p3F p4F
         this.indices.add(0);
-        this.indices.add(peptide.length() - 1);
+        this.indices.add(peptide.length());
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         PeptideCutter pc = new PeptideCutter();

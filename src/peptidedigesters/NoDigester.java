@@ -36,7 +36,7 @@ public class NoDigester implements Digester {
         // No Digestion
         indices = new ArrayList<>();
         this.indices.add(0);
-        this.indices.add(peptide.length() - 1);
+        this.indices.add(peptide.length());
         PeptideCutter PC = new PeptideCutter();
         return PC.getDigestionArray(peptide, indices, this.minimalLength);
     }

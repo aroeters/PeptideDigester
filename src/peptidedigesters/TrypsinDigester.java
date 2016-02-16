@@ -40,7 +40,7 @@ public class TrypsinDigester implements Digester {
         // p4   p3  p2  p1  p1F p2F p3F p4F
         indices = new ArrayList<>();
         this.indices.add(0);
-        this.indices.add(peptide.length() - 1);
+        this.indices.add(peptide.length());
         ArrayList<Character> aa = new ArrayList<>(Arrays.asList('K', 'R'));
         for (Character amino : aa) {
             for (int index = peptide.indexOf(amino); index >= 0 && index <= peptide.length() - 2;

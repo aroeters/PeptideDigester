@@ -43,7 +43,7 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
         // Chemotrysin high specificity
         indices = new ArrayList<>();
         this.indices.add(0);
-        this.indices.add(peptide.length() - 1);
+        this.indices.add(peptide.length());
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         indices.addAll(pm.getIndexList(pattern2, peptide));
