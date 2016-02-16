@@ -24,7 +24,7 @@ public class GluCDigester implements Digester {
     /**
      * The Patterns for the regex.
      */
-    private final Pattern pattern1 = Pattern.compile("[E]");
+    private final Pattern pattern1 = Pattern.compile("[E](?=[A-Z])");
 
     /**
      * The ArrayList of indices to cut the protein/peptide

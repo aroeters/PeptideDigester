@@ -23,11 +23,11 @@ public class ChemotrypsinDigesterHighSpecific implements Digester {
     /**
      * The first Patterns for the regex.
      */
-    private final Pattern pattern1 = Pattern.compile("[FY](?!P)");
+    private final Pattern pattern1 = Pattern.compile("[FY](?!P)(?=[A-Z])");
     /**
      * The second pattern for the regex.
      */
-    private final Pattern pattern2 = Pattern.compile("[W](?![MP])");
+    private final Pattern pattern2 = Pattern.compile("[W](?![MP])(?=[A-Z])");
 
     /**
      * The ArrayList of indices to cut the protein/peptide

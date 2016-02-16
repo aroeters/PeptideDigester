@@ -23,7 +23,7 @@ public class TrypsinDigesterConservative implements Digester {
     /**
      * The first pattern of the Pepsin Low PH digester.
      */
-    private final Pattern pattern1 = Pattern.compile("[KR](?!P)");
+    private final Pattern pattern1 = Pattern.compile("[KR](?!P)(?=[A-Z])");
     /**
      * The ArrayList of indices to cut the protein/peptide
      */

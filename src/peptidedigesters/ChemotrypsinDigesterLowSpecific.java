@@ -24,10 +24,10 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
     /**
      * The Patterns for the regex.
      */
-    private final Pattern pattern1 = Pattern.compile("[FLY](?!P)");
-    private final Pattern pattern2 = Pattern.compile("[W](?![MP])");
-    private final Pattern pattern3 = Pattern.compile("[M](?![PY])");
-    private final Pattern pattern4 = Pattern.compile("[H](?![DMPW])");
+    private final Pattern pattern1 = Pattern.compile("[FLY](?!P)(?=[A-Z])");
+    private final Pattern pattern2 = Pattern.compile("[W](?![MP])(?=[A-Z])");
+    private final Pattern pattern3 = Pattern.compile("[M](?![PY])(?=[A-Z])");
+    private final Pattern pattern4 = Pattern.compile("[H](?![DMPW])(?=[A-Z])");
 
     /**
      * The ArrayList of indices to cut the protein/peptide

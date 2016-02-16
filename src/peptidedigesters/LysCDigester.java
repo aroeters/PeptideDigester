@@ -24,7 +24,7 @@ public class LysCDigester implements Digester {
     /**
      * The Patterns for the regex.
      */
-    Pattern pattern1 = Pattern.compile("[K]");
+    Pattern pattern1 = Pattern.compile("[K](?=[A-Z])");
     /**
      * The ArrayList of indices to cut the protein/peptide
      */
