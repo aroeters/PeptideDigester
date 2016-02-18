@@ -49,7 +49,6 @@ public class TrypsinDigester implements Digester {
                 String p1F = peptide.substring(index + 1, index + 2);
                 if (index >= 1) {
                     String p2 = peptide.substring(index - 1, index);
-                    System.out.println(p2+amino+p1F);
                     if (p2.equals("W") && amino.equals("K") && p1F.equals("P")) {
                         indices.add(index+1);
                     } else if (p2.equals("M") && amino.equals("R") && p1F.equals("P")) {
@@ -87,8 +86,6 @@ public class TrypsinDigester implements Digester {
 
         }
         PeptideCutter pc = new PeptideCutter();
-        System.out.println(pc.getDigestionArray(peptide, indices,
-                0));
         return pc.getDigestionArray(peptide, indices,
                 this.minimalLength);
     }
