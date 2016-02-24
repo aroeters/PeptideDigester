@@ -29,7 +29,7 @@ public class PepsinDigesterHigherPH implements Digester {
      * The second pattern of the Pepsin High PH digestor. pattern created by
      * Rutger Ozinga
      */
-    private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[^FLWY](?=[A-Z][^P])");
+    private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[FLWY](?=[A-Z][^P])");
 
     private ArrayList<Integer> indices;
 

@@ -36,12 +36,10 @@ public class PeptideCutter {
                             + "." + peptide.substring(indices.get(i), indices.get(i + 1)) + "."
                             + peptide.substring(indices.get(i + 1), indices.get(i + 1) + 1));
                 } else if (i == 0 && indices.size() != 2) {
-                    System.out.println(indices.size() + ":" + indices);
                     digestedPeptide.add(peptide.substring(indices.get(i), indices.get(i + 1)) + "."
                             + peptide.substring(indices.get(i + 1), indices.get(i + 1) + 1));
 
                 } else if (i == indices.size() - 2 && indices.size() != 2) {
-                    System.out.println(indices.size() + ":" + indices);
                     digestedPeptide.add(peptide.substring(indices.get(i) - 1, indices.get(i)) + "."
                             + peptide.substring(indices.get(i), indices.get(i + 1)));
                 } else {
@@ -49,7 +47,6 @@ public class PeptideCutter {
                 }
             }
         }
-        System.out.println(peptide + "\n" + digestedPeptide);
         return digestedPeptide;
     }
 }

@@ -29,7 +29,7 @@ public class PepsinDigesterLowPH implements Digester {
      * The second pattern of the Pepsin Low PH digester. pattern created by
      * Rutger Ozinga
      */
-    private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[^FL](?=[A-Z][^P])");
+    private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[FL](?=[A-Z][^P])");
     /**
      * The ArrayList of indices to cut the protein/peptide
      */
