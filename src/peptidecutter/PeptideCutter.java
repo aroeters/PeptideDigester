@@ -31,7 +31,17 @@ public class PeptideCutter {
         for (int i = 0; i < indices.size() - 1; i++) {
             // To filter on the size of the peptide
             if (indices.get(i + 1) - indices.get(i) >= minimalLength) {
-                digestedPeptide.add(peptide.substring(indices.get(i), indices.get(i + 1)));
+                if (i != 0 || i != indices.size()) {
+                    digestedPeptide.add(peptide.substring(indices.get(i)-1, indices.get(i)) 
+                            + "." + peptide.substring(indices.get(i), indices.get(i + 1)) + "."
+                            +  peptide.substring(indices.get(i+1), indices.get(i + 1)+1));
+                } else if (i == 0) {
+                    digestedPeptide.add(peptide.substring(indices.get(i), indices.get(i + 1)) + "."
+                            +  peptide.substring(indices.get(i+1), indices.get(i + 1)+1));
+                } else if (i == indices.size()) {
+                    digestedPeptide.add(peptide.substring(indices.get(i), indices.get(i)-1) + "."
+                            +  peptide.substring(indices.get(i), indices.get(i + 1)));
+                }
             }
         }
         return digestedPeptide;
