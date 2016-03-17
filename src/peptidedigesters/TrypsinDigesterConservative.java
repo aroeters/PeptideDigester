@@ -21,6 +21,10 @@ public class TrypsinDigesterConservative implements Digester {
      */
     private final Integer minimalLength;
     /**
+     * The number of miscleavages used for the data.
+     */
+    private final Integer mc;
+    /**
      * The first pattern of the Pepsin Low PH digester.
      */
     private final Pattern pattern1 = Pattern.compile("[KR](?!P)(?=[A-Z])");
@@ -34,8 +38,9 @@ public class TrypsinDigesterConservative implements Digester {
      *
      * @param minLength
      */
-    public TrypsinDigesterConservative(final Integer minLength) {
+    public TrypsinDigesterConservative(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
+        this.mc = misc;
     }
 
     @Override
@@ -47,7 +52,7 @@ public class TrypsinDigesterConservative implements Digester {
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
         PeptideCutter pc = new PeptideCutter();
-        return pc.getDigestionArray(peptide, indices, this.minimalLength);
+        return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }
 
     @Override

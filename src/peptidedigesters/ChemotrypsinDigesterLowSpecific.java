@@ -20,6 +20,10 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
      * contains the minimal length a peptide should have
      */
     private final Integer minimalLength;
+    /**
+     * The number of miscleavages used for the data.
+     */
+    private final Integer mc;
 
     /**
      * The Patterns for the regex.
@@ -34,8 +38,9 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
      */
     private ArrayList<Integer> indices;
 
-    public ChemotrypsinDigesterLowSpecific(final Integer minLength) {
+    public ChemotrypsinDigesterLowSpecific(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
+        this.mc = misc;
     }
 
     @Override
@@ -50,7 +55,7 @@ public class ChemotrypsinDigesterLowSpecific implements Digester {
         indices.addAll(pm.getIndexList(pattern3, peptide));
         indices.addAll(pm.getIndexList(pattern4, peptide));
         PeptideCutter pc = new PeptideCutter();
-        return pc.getDigestionArray(peptide, indices, this.minimalLength);
+        return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }
 
     @Override

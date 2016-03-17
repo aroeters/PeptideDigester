@@ -20,6 +20,10 @@ public class TrypsinDigester implements Digester {
      */
     private final Integer minimalLength;
     /**
+     * The number of miscleavages used for the data.
+     */
+    private final Integer mc;
+    /**
      * The ArrayList of indices to cut the protein/peptide
      */
     private ArrayList<Integer> indices;
@@ -29,8 +33,9 @@ public class TrypsinDigester implements Digester {
      *
      * @param minLength
      */
-    public TrypsinDigester(final Integer minLength) {
+    public TrypsinDigester(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
+        this.mc = misc;
     }
 
     @Override
@@ -88,8 +93,7 @@ public class TrypsinDigester implements Digester {
 
         }
         PeptideCutter pc = new PeptideCutter();
-        return pc.getDigestionArray(peptide, indices,
-                this.minimalLength);
+        return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }
 
     @Override

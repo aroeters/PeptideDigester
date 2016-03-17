@@ -19,6 +19,10 @@ public class NoDigester implements Digester {
      */
     private final Integer minimalLength;
     /**
+     * The number of miscleavages used for the data.
+     */
+    private final Integer mc;
+    /**
      * The ArrayList of indices to cut the protein/peptide
      */
     private ArrayList<Integer> indices;
@@ -27,8 +31,9 @@ public class NoDigester implements Digester {
      *
      * @param minLength
      */
-    public NoDigester(final Integer minLength) {
+    public NoDigester(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
+        this.mc = misc;
     }
     
     @Override
@@ -37,8 +42,8 @@ public class NoDigester implements Digester {
         indices = new ArrayList<>();
         this.indices.add(0);
         this.indices.add(peptide.length());
-        PeptideCutter PC = new PeptideCutter();
-        return PC.getDigestionArray(peptide, indices, this.minimalLength);
+        PeptideCutter pc = new PeptideCutter();
+        return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }
 
     @Override

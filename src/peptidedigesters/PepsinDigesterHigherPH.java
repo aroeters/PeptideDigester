@@ -21,6 +21,10 @@ public class PepsinDigesterHigherPH implements Digester {
      */
     private final Integer minimalLength;
     /**
+     * The number of miscleavages used for the data.
+     */
+    private final Integer mc;
+    /**
      * The first pattern of the Pepsin High PH digestor. pattern created by
      * Rutger Ozinga
      */
@@ -38,8 +42,9 @@ public class PepsinDigesterHigherPH implements Digester {
      *
      * @param minLength
      */
-    public PepsinDigesterHigherPH(final Integer minLength) {
+    public PepsinDigesterHigherPH(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
+        this.mc = misc;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class PepsinDigesterHigherPH implements Digester {
         indices.addAll(pm.getIndexList(pattern1, peptide));
         indices.addAll(pm.getIndexList(pattern2, peptide));
         PeptideCutter pc = new PeptideCutter();
-        return pc.getDigestionArray(peptide, indices, this.minimalLength);
+        return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }
 
     @Override
