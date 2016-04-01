@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
+import proteindigesters.Digester;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Rutger
  */
-public class ChemotrypsinDigesterHighSpecificTest {
+public class DigesterTest {
     
-    public ChemotrypsinDigesterHighSpecificTest() {
+    public DigesterTest() {
     }
     
     @BeforeClass
@@ -39,13 +40,13 @@ public class ChemotrypsinDigesterHighSpecificTest {
     }
 
     /**
-     * Test of digest method, of class ChemotrypsinDigesterHighSpecific.
+     * Test of digest method, of class Digester.
      */
     @Test
     public void testDigest() {
         System.out.println("digest");
         String peptide = "";
-        ChemotrypsinDigesterHighSpecific instance = null;
+        Digester instance = new DigesterImpl();
         ArrayList<String> expResult = null;
         ArrayList<String> result = instance.digest(peptide);
         assertEquals(expResult, result);
@@ -54,17 +55,28 @@ public class ChemotrypsinDigesterHighSpecificTest {
     }
 
     /**
-     * Test of getIndices method, of class ChemotrypsinDigesterHighSpecific.
+     * Test of getIndices method, of class Digester.
      */
     @Test
     public void testGetIndices() {
         System.out.println("getIndices");
-        ChemotrypsinDigesterHighSpecific instance = null;
+        Digester instance = new DigesterImpl();
         ArrayList<Integer> expResult = null;
         ArrayList<Integer> result = instance.getIndices();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    public class DigesterImpl implements Digester {
+
+        public ArrayList<String> digest(String peptide) {
+            return null;
+        }
+
+        public ArrayList<Integer> getIndices() {
+            return null;
+        }
     }
     
 }

@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
-import peptidecutter.PeptideCutter;
-import peptidematcher.PeptideMatcher;
+import proteincutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import peptidematcher.PeptideMatcher;
 
 /**
  *
  * @author arne
  */
-public class ChemotrypsinDigesterHighSpecific implements Digester {
+public class PepsinDigesterHigherPH implements Digester {
 
     /**
-     * contains the minimal length a peptide should have
+     * contains the minimal length a peptide should have.
      */
     private final Integer minimalLength;
     /**
@@ -25,32 +25,31 @@ public class ChemotrypsinDigesterHighSpecific implements Digester {
      */
     private final Integer mc;
     /**
-     * The first Patterns for the regex.
+     * The first pattern of the Pepsin High PH digestor. pattern created by
+     * Rutger Ozinga
      */
-    private final Pattern pattern1 = Pattern.compile("[FY](?!P)(?=[A-Z])");
+    private final Pattern pattern1 = Pattern.compile("(?![HKR]P)[^R](?=[FLWY][^P])");
     /**
-     * The second pattern for the regex.
+     * The second pattern of the Pepsin High PH digestor. pattern created by
+     * Rutger Ozinga
      */
-    private final Pattern pattern2 = Pattern.compile("[W](?![MP])(?=[A-Z])");
+    private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[FLWY](?=[A-Z][^P])");
 
-    /**
-     * The ArrayList of indices to cut the protein/peptide
-     */
     private ArrayList<Integer> indices;
 
     /**
      * Initiates the class.
      *
-     * @param minLength minimal length a peptide should have
+     * @param minLength
      */
-    public ChemotrypsinDigesterHighSpecific(final Integer minLength, final Integer misc) {
+    public PepsinDigesterHigherPH(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
         this.mc = misc;
     }
 
     @Override
     public final ArrayList<String> digest(final String peptide) {
-        // Chemotrysin high specificity
+        // Pepsin Higher PH (PH > 2)
         indices = new ArrayList<>();
         this.indices.add(0);
         this.indices.add(peptide.length());

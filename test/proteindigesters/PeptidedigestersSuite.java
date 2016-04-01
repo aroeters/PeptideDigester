@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author Rutger
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({peptidedigesters.ChemotrypsinDigesterLowSpecificTest.class, peptidedigesters.ChemotrypsinDigesterHighSpecificTest.class, peptidedigesters.LysCDigesterTest.class, peptidedigesters.DigesterTest.class, peptidedigesters.TrypsinDigesterTest.class, peptidedigesters.TrypsinDigesterConservativeTest.class, peptidedigesters.PepsinDigesterLowPHTest.class, peptidedigesters.GluCDigesterTest.class, peptidedigesters.PeptideDigesterTest.class, peptidedigesters.NoDigesterTest.class, peptidedigesters.AspNDigesterTest.class, peptidedigesters.PepsinDigesterHigherPHTest.class})
+@Suite.SuiteClasses({proteindigesters.ChemotrypsinDigesterLowSpecificTest.class, proteindigesters.ChemotrypsinDigesterHighSpecificTest.class, proteindigesters.LysCDigesterTest.class, proteindigesters.DigesterTest.class, proteindigesters.TrypsinDigesterTest.class, proteindigesters.TrypsinDigesterConservativeTest.class, proteindigesters.PepsinDigesterLowPHTest.class, proteindigesters.GluCDigesterTest.class, proteindigesters.PeptideDigesterTest.class, proteindigesters.NoDigesterTest.class, proteindigesters.AspNDigesterTest.class, proteindigesters.PepsinDigesterHigherPHTest.class})
 public class PeptidedigestersSuite {
 
     @BeforeClass

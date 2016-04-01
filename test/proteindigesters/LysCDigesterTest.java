@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
+import proteindigesters.LysCDigester;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Rutger
  */
-public class PepsinDigesterHigherPHTest {
+public class LysCDigesterTest {
     
-    public PepsinDigesterHigherPHTest() {
+    public LysCDigesterTest() {
     }
     
     @BeforeClass
@@ -39,13 +40,13 @@ public class PepsinDigesterHigherPHTest {
     }
 
     /**
-     * Test of digest method, of class PepsinDigesterHigherPH.
+     * Test of digest method, of class LysCDigester.
      */
     @Test
     public void testDigest() {
         System.out.println("digest");
         String peptide = "";
-        PepsinDigesterHigherPH instance = null;
+        LysCDigester instance = null;
         ArrayList<String> expResult = null;
         ArrayList<String> result = instance.digest(peptide);
         assertEquals(expResult, result);
@@ -54,12 +55,12 @@ public class PepsinDigesterHigherPHTest {
     }
 
     /**
-     * Test of getIndices method, of class PepsinDigesterHigherPH.
+     * Test of getIndices method, of class LysCDigester.
      */
     @Test
     public void testGetIndices() {
         System.out.println("getIndices");
-        PepsinDigesterHigherPH instance = null;
+        LysCDigester instance = null;
         ArrayList<Integer> expResult = null;
         ArrayList<Integer> result = instance.getIndices();
         assertEquals(expResult, result);

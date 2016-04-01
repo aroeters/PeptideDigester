@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
+import proteindigesters.ChemotrypsinDigesterLowSpecific;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Rutger
  */
-public class NoDigesterTest {
+public class ChemotrypsinDigesterLowSpecificTest {
     
-    public NoDigesterTest() {
+    public ChemotrypsinDigesterLowSpecificTest() {
     }
     
     @BeforeClass
@@ -39,13 +40,13 @@ public class NoDigesterTest {
     }
 
     /**
-     * Test of digest method, of class NoDigester.
+     * Test of digest method, of class ChemotrypsinDigesterLowSpecific.
      */
     @Test
     public void testDigest() {
         System.out.println("digest");
         String peptide = "";
-        NoDigester instance = null;
+        ChemotrypsinDigesterLowSpecific instance = null;
         ArrayList<String> expResult = null;
         ArrayList<String> result = instance.digest(peptide);
         assertEquals(expResult, result);
@@ -54,12 +55,12 @@ public class NoDigesterTest {
     }
 
     /**
-     * Test of getIndices method, of class NoDigester.
+     * Test of getIndices method, of class ChemotrypsinDigesterLowSpecific.
      */
     @Test
     public void testGetIndices() {
         System.out.println("getIndices");
-        NoDigester instance = null;
+        ChemotrypsinDigesterLowSpecific instance = null;
         ArrayList<Integer> expResult = null;
         ArrayList<Integer> result = instance.getIndices();
         assertEquals(expResult, result);

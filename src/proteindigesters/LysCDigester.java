@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
-import peptidecutter.PeptideCutter;
+import proteincutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import peptidematcher.PeptideMatcher;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
-import peptidecutter.PeptideCutter;
+import proteincutter.PeptideCutter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import peptidematcher.PeptideMatcher;
@@ -14,10 +14,10 @@ import peptidematcher.PeptideMatcher;
  *
  * @author arne
  */
-public class TrypsinDigesterConservative implements Digester {
+public class PepsinDigesterLowPH implements Digester {
 
     /**
-     * contains the minimal length a peptide should have.
+     * contains the minimal length a peptide should have
      */
     private final Integer minimalLength;
     /**
@@ -25,11 +25,17 @@ public class TrypsinDigesterConservative implements Digester {
      */
     private final Integer mc;
     /**
-     * The first pattern of the Pepsin Low PH digester.
+     * The first pattern of the Pepsin Low PH digester. pattern created by
+     * Rutger Ozinga
      */
-    private final Pattern pattern1 = Pattern.compile("[KR](?!P)(?=[A-Z])");
+    private final Pattern pattern1 = Pattern.compile("(?![HKR]P)[^R](?=[FL][^P])");
     /**
-     * The ArrayList of indices to cut the protein/peptide.
+     * The second pattern of the Pepsin Low PH digester. pattern created by
+     * Rutger Ozinga
+     */
+    private final Pattern pattern2 = Pattern.compile("(?![HKR]P)[FL](?=[A-Z][^P])");
+    /**
+     * The ArrayList of indices to cut the protein/peptide
      */
     private ArrayList<Integer> indices;
 
@@ -38,19 +44,20 @@ public class TrypsinDigesterConservative implements Digester {
      *
      * @param minLength
      */
-    public TrypsinDigesterConservative(final Integer minLength, final Integer misc) {
+    public PepsinDigesterLowPH(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
         this.mc = misc;
     }
 
     @Override
     public final ArrayList<String> digest(final String peptide) {
-        // Trypsin conservative
+        // Pepsin low PH (PH1.3)
         indices = new ArrayList<>();
         this.indices.add(0);
         this.indices.add(peptide.length());
         PeptideMatcher pm = new PeptideMatcher();
         indices.addAll(pm.getIndexList(pattern1, peptide));
+        indices.addAll(pm.getIndexList(pattern2, peptide));
         PeptideCutter pc = new PeptideCutter();
         return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }

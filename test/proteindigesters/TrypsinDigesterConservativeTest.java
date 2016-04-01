@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
+import proteindigesters.TrypsinDigesterConservative;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Rutger
  */
-public class DigesterTest {
+public class TrypsinDigesterConservativeTest {
     
-    public DigesterTest() {
+    public TrypsinDigesterConservativeTest() {
     }
     
     @BeforeClass
@@ -39,13 +40,13 @@ public class DigesterTest {
     }
 
     /**
-     * Test of digest method, of class Digester.
+     * Test of digest method, of class TrypsinDigesterConservative.
      */
     @Test
     public void testDigest() {
         System.out.println("digest");
         String peptide = "";
-        Digester instance = new DigesterImpl();
+        TrypsinDigesterConservative instance = null;
         ArrayList<String> expResult = null;
         ArrayList<String> result = instance.digest(peptide);
         assertEquals(expResult, result);
@@ -54,28 +55,17 @@ public class DigesterTest {
     }
 
     /**
-     * Test of getIndices method, of class Digester.
+     * Test of getIndices method, of class TrypsinDigesterConservative.
      */
     @Test
     public void testGetIndices() {
         System.out.println("getIndices");
-        Digester instance = new DigesterImpl();
+        TrypsinDigesterConservative instance = null;
         ArrayList<Integer> expResult = null;
         ArrayList<Integer> result = instance.getIndices();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-
-    public class DigesterImpl implements Digester {
-
-        public ArrayList<String> digest(String peptide) {
-            return null;
-        }
-
-        public ArrayList<Integer> getIndices() {
-            return null;
-        }
     }
     
 }

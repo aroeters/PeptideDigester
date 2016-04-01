@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package peptidedigesters;
+package proteindigesters;
 
-import peptidecutter.PeptideCutter;
+import proteincutter.PeptideCutter;
+import peptidematcher.PeptideMatcher;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author arne
  */
-public class NoDigester implements Digester {
+public class ChemotrypsinDigesterHighSpecific implements Digester {
 
     /**
-     * contains the minimal length a peptide should have.
+     * contains the minimal length a peptide should have
      */
     private final Integer minimalLength;
     /**
@@ -23,25 +25,38 @@ public class NoDigester implements Digester {
      */
     private final Integer mc;
     /**
+     * The first Patterns for the regex.
+     */
+    private final Pattern pattern1 = Pattern.compile("[FY](?!P)(?=[A-Z])");
+    /**
+     * The second pattern for the regex.
+     */
+    private final Pattern pattern2 = Pattern.compile("[W](?![MP])(?=[A-Z])");
+
+    /**
      * The ArrayList of indices to cut the protein/peptide
      */
     private ArrayList<Integer> indices;
+
     /**
      * Initiates the class.
      *
-     * @param minLength
+     * @param minLength minimal length a peptide should have
      */
-    public NoDigester(final Integer minLength, final Integer misc) {
+    public ChemotrypsinDigesterHighSpecific(final Integer minLength, final Integer misc) {
         this.minimalLength = minLength;
         this.mc = misc;
     }
-    
+
     @Override
     public final ArrayList<String> digest(final String peptide) {
-        // No Digestion
+        // Chemotrysin high specificity
         indices = new ArrayList<>();
         this.indices.add(0);
         this.indices.add(peptide.length());
+        PeptideMatcher pm = new PeptideMatcher();
+        indices.addAll(pm.getIndexList(pattern1, peptide));
+        indices.addAll(pm.getIndexList(pattern2, peptide));
         PeptideCutter pc = new PeptideCutter();
         return pc.getDigestionArray(peptide, indices, this.minimalLength, this.mc);
     }
