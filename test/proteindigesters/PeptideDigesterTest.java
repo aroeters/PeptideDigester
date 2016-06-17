@@ -5,7 +5,7 @@
  */
 package proteindigesters;
 
-import proteindigesters.PeptideDigester;
+import proteindigesters.ProteinDigester;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,13 +39,13 @@ public class PeptideDigesterTest {
     }
 
     /**
-     * Test of main method, of class PeptideDigester.
+     * Test of main method, of class ProteinDigester.
      */
     @Test
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        PeptideDigester.main(args);
+        ProteinDigester.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
